@@ -1,26 +1,21 @@
-//your code here!
+let list = document.querySelector("#infi-list");
+console.log(list);
 
-// select the list element
-const list = document.querySelector('#infi-list');
+for(let i=1; i<=10; i++){
+  list.innerHTML += `<li>Item ${i}</li>`
+}
 
-const listItems = list.children;
+let n = 10;
 
-function addItems() {
-  for (let i = 0; i < 2; i++) {
-    const listItem = document.createElement('li');
-    listItem.innerText = `List Item ${listItems.length + i + 1}`;
-    list.appendChild(listItem);
+list.addEventListener("scroll", ()=>{
+  // console.log("used scrolled the list");
+  if(list.scrollHeight - list.scrollTop - list.clientHeight < 1){
+    // console.log("you reached the end");
+    list.innerHTML += `
+    <li>Item ${n+1}</li>
+    <li>Item ${n+2}</li>
+    `
+    n+=2;
   }
-}
+})
 
-for (let i = 0; i < 10; i++) {
-  const listItem = document.createElement('li');
-  listItem.innerText = `List Item ${i + 1}`;
-  list.appendChild(listItem);
-}
-
-window.addEventListener('scroll', () => {
-	if(window.scrollY + window.innerHeight >= 
-    document.documentElement.scrollHeight)
-    addItems();
-});
